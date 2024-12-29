@@ -2,3 +2,6 @@ print("privet!!!")
 
 "asdasd"
 asdasd2e12
+ asdasd2e12
+
+ yesdf
