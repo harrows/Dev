@@ -15,7 +15,10 @@ class Phone:
     def get_missed_calls(self):
         print('Запрос количества пропущенных вызовов.')
 
+
 rotary_phone = Phone(dial_type_value='дисковый')
+
+
 print(rotary_phone.dial_type)
 
 rotary_phone.dial_type = 'кнопочный'
