@@ -1,27 +1,19 @@
-class Phone:
+try:
+    import practicum
+except ImportError:
+    raise AssertionError('Модуль `practicum` не обнаружен.')
 
-    line_type = 'проводной'
+EXPECTED_FUNC_NAME = 'say_hello'
 
-    def __init__(self, dial_type_value):
-        self.dial_type = dial_type_value
+def test_say_hello_exists():
+    assert hasattr(practicum, EXPECTED_FUNC_NAME), (
+        f'Функция `{EXPECTED_FUNC_NAME}` не обнаружена в модуле `practicum`')
 
-    def ring(self):
-        print('Дзззззыыыыыыыынь!')
-
-    def call(self, phone_number):
-        print(f'Звоню по номеру {phone_number}! Тип связи - {self.line_type}.')
-
-    # Ещё один метод.
-    def get_missed_calls(self):
-        print('Запрос количества пропущенных вызовов.')
-
-
-rotary_phone = Phone(dial_type_value='дисковый')
-
-
-print(rotary_phone.dial_type)
-
-rotary_phone.dial_type = 'кнопочный'
-
-print(rotary_phone.dial_type)
-rotary_phone.get_missed_calls()
+def test_say_hello_run_without_exceptions():
+    try:
+        practicum.say_hello()
+    except Exception as error:
+        raise AssertionError(
+            f'При запуске функции `{EXPECTED_FUNC_NAME}` возникло '
+            f'исключение: {type(error).__name__}: {error}`'
+        ) 
