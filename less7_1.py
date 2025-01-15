@@ -21,7 +21,7 @@ class BacteriaProducer:
     # Если в чаше уже нет бактерий, то удалять нечего;
     # выведите сообщение об ошибке
     def delete(self):
-        if self.current_bacteria_count > self.max_bacteria:
+        if self.current_bacteria_count > 0:
             self.current_bacteria_count -= 1
             print(f'Одна бактерия удалена. Бактерий в колонии: {self.current_bacteria_count}')
         else:
