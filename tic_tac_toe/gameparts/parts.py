@@ -8,4 +8,4 @@ class Board:
     def display(self):
         for row in self.board:
             print('|'.join(row))
-            print('-' * 5) 
+            print('-' * 5)
