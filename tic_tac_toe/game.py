@@ -75,4 +75,4 @@ def save_result(winner):
         file.write(winner + '\n')
 
 if __name__ == '__main__':
-    main()
+    main() 
