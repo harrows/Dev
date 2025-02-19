@@ -1,47 +1,38 @@
-from random import choice, uniform
+class Product:
+    def __init__(self, name, retail_price, purchase_price):
+        self.name = name
+        self.retail_price = retail_price
+        self.purchase_price = purchase_price
+
+    # Опишите свойство profit
+    @property
+    def profit(self):
+        return self.retail_price - self.purchase_price
+
+    # Опишите статический метод average_price()
+    @staticmethod
+    def average_price(assortment_prices):
+        return sum(assortment_prices) / len(assortment_prices)
+
+    # Опишите свойство information
+    @property
+    def information(self):
+        return f'Название - {self.name}, розничная цена - {self.retail_price}, закупочная цена - {self.purchase_price}'
 
 
-def format_float_return(func):
-    def wrapper():
-        result = func()
-        if type(result) == float:
-            return f'{result:.2f}'
-        else:
-            return result
-    
-    return wrapper
-        
-
-    # Ваш код здесь
 
 
-# Не изменяйте код ниже: он поможет проверить работу декоратора.
-# Декорируем функцию:
-@format_float_return
-def test_function_1():
-    """Возвращает случайное число типа float в диапазоне от -10 до 10,
-    например -4.3897268052813265.
-    """
-    return uniform(-10, 10)
+# Данные для проверки, не изменяйте их.
+product_1 = Product('Картошка', 100, 90)
+product_2 = Product('Перчатки', 150, 120)
+product_3 = Product('Велосипед', 170, 150)
 
+assortment_prices = [
+    product_1.retail_price,
+    product_2.retail_price,
+    product_3.retail_price,
+]
 
-# Декорируем вторую функцию:
-@format_float_return
-def test_function_2():
-    """Возвращает случайный элемент списка sequence - число или строку."""
-    sequence = [
-        3.1415926535,
-        'pi',
-        3.14,
-        'пи',
-        'три целых четырнадцать сотых',
-        3.14159
-    ]
-    # Функция choice() из модуля random возвращает 
-    # случайный элемент последовательности.
-    return choice(sequence)
-
-
-# Вызовем задекорированные функции для проверки работы декоратора:
-print(test_function_1())
-print(test_function_2())
+print(f'Средняя стоимость: {Product.average_price(assortment_prices)}')
+print(f'Прибыль магазина с товара {product_1.name}: {product_1.profit}')
+print(f'Информация о товаре {product_1.name}: {product_1.information}')
