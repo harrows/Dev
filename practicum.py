@@ -1,49 +1,12 @@
-from typing import Optional
+def analyze_object(obj):
+    print(f"Тип объекта: {type(obj)}")
+    print(f"Атрибуты и методы: {dir(obj)}")
+    
+    if hasattr(obj, '__dict__'):
+        print(f"Атрибуты экземпляра: {obj.__dict__}")
+    else:
+        print("У объекта нет `__dict__`")
 
+    print(f"Имя класса: {obj.__class__.__name__}")
 
-class User:
-    def __init__(
-            self,
-            first_name: str | None = None,
-            last_name: str | None = None,
-            username: str | None = None,
-    ):
-        if not first_name and not last_name and not username:
-            raise ValueError('Необходимо указать параметры пользователя')
-
-        self.first_name = first_name
-        self.last_name = last_name
-        self.username = username
-
-    # Опишите метод класса with_name.
-    @classmethod
-    def with_name(cls, first_name: str, last_name: str):
-        return cls(first_name=first_name, last_name=last_name)
-
-    # Опишите метод класса with_username.
-    @classmethod
-    def with_username(cls, username: str):
-        if not cls.is_username_allowed(username):
-            raise ValueError('Некорректное имя пользователя')
-        return cls(username=username)
-
-    # Опишите статический метод класса is_username_allowed.
-    @staticmethod
-    def is_username_allowed(username: str) -> bool:
-        return not username.startswith('admin')
-
-    # Опишите метод-свойство full_name.
-    @property
-    def full_name(self) -> str:
-        if self.first_name and self.last_name:
-            return f"{self.first_name} {self.last_name}"
-        elif self.username:
-            return f"@{self.username}"
-        return "Неизвестный пользователь"
-
-
-stas = User.with_name('Стас', 'Басов')
-print(stas.full_name)
-
-# Попробуем создать пользователя с "запрещённым" именем.
-# ne_stas = User.with_username('admin_nestas_anonymous')
+analyze_object(42)
